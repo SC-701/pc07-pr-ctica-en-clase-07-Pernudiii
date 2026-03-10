@@ -1,0 +1,36 @@
+﻿@using Microsoft.AspNetCore.Identity
+
+<ul class="navbar-nav ms-3">
+
+    @if (User.Identity != null && User.Identity.IsAuthenticated)
+    {
+        <li class="nav-item">
+            <span class="nav-link text-light">
+                <i class="bi bi-person-circle"></i> @User.Identity.Name
+            </span>
+        </li>
+
+        <li class="nav-item">
+            <form method="post" asp-page="/Account/Logout">
+                <button type="submit" class="nav-link btn btn-link text-light">
+                    <i class="bi bi-box-arrow-right"></i> Cerrar sesión
+                </button>
+            </form>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link text-light" asp-page="/Account/Login">
+                <i class="bi bi-box-arrow-in-right"></i> Iniciar sesión
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link text-light" asp-page="/Account/Register">
+                <i class="bi bi-person-plus"></i> Registrarse
+            </a>
+        </li>
+    }
+
+</ul>
