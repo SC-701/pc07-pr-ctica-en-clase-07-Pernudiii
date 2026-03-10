@@ -1,5 +1,4 @@
-﻿using Abstracciones.Modelo;
-using Abstracciones.Modelo.Abstracciones.Modelo;
+﻿using Abstracciones.Modelos;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Abstracciones.Interfaces.API

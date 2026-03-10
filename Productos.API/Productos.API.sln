@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flujo", "Flujo\Flujo.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "API\API.csproj", "{F018CF76-62D3-40A5-AE4D-A70F4059AE86}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reglas", "Reglas\Reglas.csproj", "{F483518A-57E9-4937-BDE2-DBDDFC2979E4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Servicios", "Servicios\Servicios.csproj", "{2E0071FB-D082-4052-99F1-2F62DA41B7C2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +45,14 @@ Global
 		{F018CF76-62D3-40A5-AE4D-A70F4059AE86}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F018CF76-62D3-40A5-AE4D-A70F4059AE86}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F018CF76-62D3-40A5-AE4D-A70F4059AE86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F483518A-57E9-4937-BDE2-DBDDFC2979E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F483518A-57E9-4937-BDE2-DBDDFC2979E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F483518A-57E9-4937-BDE2-DBDDFC2979E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F483518A-57E9-4937-BDE2-DBDDFC2979E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E0071FB-D082-4052-99F1-2F62DA41B7C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E0071FB-D082-4052-99F1-2F62DA41B7C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E0071FB-D082-4052-99F1-2F62DA41B7C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E0071FB-D082-4052-99F1-2F62DA41B7C2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

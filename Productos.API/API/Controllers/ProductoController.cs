@@ -1,9 +1,7 @@
 using Abstracciones.Interfaces.API;
 using Abstracciones.Interfaces.Flujo;
-using Abstracciones.Modelo;
-using Abstracciones.Modelo.Abstracciones.Modelo;
+using Abstracciones.Modelos;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 
 namespace API.Controllers
 {
@@ -37,7 +35,7 @@ namespace API.Controllers
         [HttpDelete("{Id}")]
         public async Task<IActionResult> Eliminar(Guid Id)
         {
-            await _productoFlujo.Eliminar(Id);
+            var resultado = await _productoFlujo.Eliminar(Id);
             return NoContent();
         }
 
@@ -45,6 +43,7 @@ namespace API.Controllers
         public async Task<IActionResult> Obtener()
         {
             var resultado = await _productoFlujo.Obtener();
+
             if (!resultado.Any())
                 return NoContent();
 

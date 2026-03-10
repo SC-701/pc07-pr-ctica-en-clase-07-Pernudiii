@@ -13,7 +13,7 @@ namespace DA.Repositorios
             _configuration = configuration;
             _conexionBaseDatos = new SqlConnection(_configuration.GetConnectionString("BD"));
         }
-        public SqlConnection ObetenerRepositorio()
+        public SqlConnection ObtenerRepositorio()
         {
             return _conexionBaseDatos;
         }

@@ -1,8 +1,7 @@
 ﻿using Abstracciones.Interfaces.DA;
-using Abstracciones.Modelo;
-using Microsoft.Data.SqlClient;
+using Abstracciones.Modelos;
 using Dapper;
-using Abstracciones.Modelo.Abstracciones.Modelo;
+using Microsoft.Data.SqlClient;
 
 namespace DA
 {
@@ -14,12 +13,14 @@ namespace DA
         public ProductoDA(IRepositorioDapper repositorioDapper)
         {
             _repositorioDapper = repositorioDapper;
-            _sqlConnection = _repositorioDapper.ObetenerRepositorio();
+            _sqlConnection = _repositorioDapper.ObtenerRepositorio();
         }
-        public async Task<Guid> Agregar(ProductoRequest producto)
+
+        public async Task<Guid> Agregar(Guid Id, ProductoRequest producto)
         {
             string query = @"AgregarProducto";
-            var reultadoConsulta = await _sqlConnection.ExecuteScalarAsync<Guid>(query, new
+
+            var resultadoConsulta = await _sqlConnection.ExecuteScalarAsync<Guid>(query, new
             {
                 Id = Guid.NewGuid(),
                 IdSubCategoria = producto.IdSubCategoria,
@@ -29,16 +30,19 @@ namespace DA
                 Stock = producto.Stock,
                 CodigoBarras = producto.CodigoBarras
             });
-            return reultadoConsulta;
+
+            return resultadoConsulta;
         }
 
         public async Task<Guid> Editar(Guid Id, ProductoRequest producto)
         {
             await verificarProductoExiste(Id);
+
             string query = @"EditarProducto";
-            var reultadoConsulta = await _sqlConnection.ExecuteScalarAsync<Guid>(query, new
+
+            var resultadoConsulta = await _sqlConnection.ExecuteScalarAsync<Guid>(query, new
             {
-                Id = Guid.NewGuid(),
+                Id = Id,
                 IdSubCategoria = producto.IdSubCategoria,
                 Nombre = producto.Nombre,
                 Descripcion = producto.Descripcion,
@@ -46,42 +50,69 @@ namespace DA
                 Stock = producto.Stock,
                 CodigoBarras = producto.CodigoBarras
             });
-            return reultadoConsulta;
+
+            return resultadoConsulta;
         }
 
         public async Task<Guid> Eliminar(Guid Id)
         {
             await verificarProductoExiste(Id);
+
             string query = @"EliminarProducto";
-            var reultadoConsulta = await _sqlConnection.ExecuteScalarAsync<Guid>(query, new
+
+            var resultadoConsulta = await _sqlConnection.ExecuteScalarAsync<Guid>(query, new
             {
                 Id = Id
             });
-            return reultadoConsulta;
+
+            return resultadoConsulta;
         }
 
         public async Task<IEnumerable<ProductoResponse>> Obtener()
         {
             string query = @"ObtenerProductos";
+
             var resultadoConsulta = await _sqlConnection.QueryAsync<ProductoResponse>(query);
+
             return resultadoConsulta;
         }
 
         public async Task<ProductoResponse> Obtener(Guid Id)
         {
             string query = @"ObtenerProducto";
-            var resultadoConsulta = await _sqlConnection.QueryAsync<ProductoResponse>(query, new
-            {
-                Id = Id
-            });
+
+            var resultadoConsulta = await _sqlConnection.QueryAsync<ProductoResponse>(query,
+            new { Id = Id });
+
             return resultadoConsulta.FirstOrDefault();
+        }
+
+        public async Task<Guid> Agregar(ProductoRequest producto)
+        {
+            string query = @"AgregarProducto";
+
+            Guid idGenerado = Guid.NewGuid();
+
+            await _sqlConnection.ExecuteAsync(query, new
+            {
+                Id = idGenerado,
+                IdSubCategoria = producto.IdSubCategoria,
+                Nombre = producto.Nombre,
+                Descripcion = producto.Descripcion,
+                Precio = producto.Precio,
+                Stock = producto.Stock,
+                CodigoBarras = producto.CodigoBarras
+            });
+
+            return idGenerado;
         }
 
         private async Task verificarProductoExiste(Guid Id)
         {
             ProductoResponse? resultadoConsultaProducto = await Obtener(Id);
+
             if (resultadoConsultaProducto == null)
-                throw new Exception("No se encontro el producto");
+                throw new Exception("El producto no existe");
         }
     }
 }
